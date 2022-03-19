@@ -12,7 +12,7 @@ WORKDIR /go/src/kubesphere.io/kubesphere
 
 RUN GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build --ldflags "-extldflags -static" -o controller-manager ./cmd/controller-manager/
 
-FROM alpine:3.7
+FROM alpine:3.14
 RUN apk add --update ca-certificates && update-ca-certificates
 COPY --from=controller-manager-builder /go/src/kubesphere.io/kubesphere/controller-manager /usr/local/bin/
 CMD controller-manager
